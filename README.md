@@ -135,6 +135,11 @@ def logout():
             "client_id": env.get("AUTH0_CLIENT_ID")
         }, quote_via=quote_plus)
     )
+@app.route("/dashboard")
+def dashboard():
+    if "user" not in session:
+        return redirect("/login")
+    return render_template("dashboard.html", user=session["user"])
 
 @app.route("/protected")
 def protected():
@@ -158,7 +163,7 @@ Create a `templates/` folder in your project root and add the following two HTML
   <body>
     {% if user %}
         <h1>Welcome {{ user['name'] }}</h1>
-        <a href="/dashboard">Go to Protected Page</a><br>
+        <a href="/protected">Go to Protected Page</a><br>
         <a href="/logout">Logout</a>
         <pre>{{ pretty }}</pre>
     {% else %}
