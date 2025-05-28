@@ -47,6 +47,11 @@ def logout():
             "client_id": env.get("AUTH0_CLIENT_ID")
         }, quote_via=quote_plus)
     )
+@app.route("/dashboard")
+def dashboard():
+    if "user" not in session:
+        return redirect("/login")
+    return render_template("dashboard.html", user=session["user"])
 
 @app.route("/protected")
 def protected():

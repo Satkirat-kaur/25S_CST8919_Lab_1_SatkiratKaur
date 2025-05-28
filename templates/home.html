@@ -2,7 +2,7 @@
   <body>
     {% if user %}
         <h1>Welcome {{ user['name'] }}</h1>
-        <a href="/dashboard">Go to Protected Page</a><br>
+        <a href="/protected">Go to Protected Page</a><br>
         <a href="/logout">Logout</a>
         <pre>{{ pretty }}</pre>
     {% else %}
